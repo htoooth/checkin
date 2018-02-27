@@ -1,5 +1,3 @@
-const request = require('./request')
-
 const data = {
   method: "checkin",
   type: "checkin",
@@ -9,9 +7,9 @@ const data = {
   wifiMac: "null HTTP/1.1"
 }
 
-async function checkin(sessionkey) {
+async function checkin(session, sessionkey) {
   return new Promise(function(resolve, reject) {
-    request.get('/client.do', {qs: Object.assign(data, sessionkey)}, function(err, res, body) {
+    session.get('/client.do', {qs: Object.assign(data, sessionkey)}, function(err, res, body) {
       if (err) {
         reject(err)
         return

@@ -1,8 +1,6 @@
-const request = require('./request')
-
-async function getconfig() {
+async function getconfig(session) {
   return new Promise(function(resolve, reject) {
-    request.post('/client.do?method=getconfig', (err,res,body) => {
+    session.post('/client.do?method=getconfig', (err,res,body) => {
       if (err) {
         reject(err)
         return

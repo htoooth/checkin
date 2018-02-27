@@ -2,6 +2,7 @@ const getconfig = require('./task/getconfig')
 const login = require('./task/login')
 const checkin = require('./task/checkin')
 const holiday = require('./task/holiday')
+const request = require('./task/request')
 const moment = require('moment')
 
 async function main() {
@@ -14,11 +15,13 @@ async function main() {
   }
 
   console.log(`${today} 工作`)
-  const res1 = await getconfig()
-  const {sessionkey} = await login()
+
+  const session = request.session()
+  const res1 = await getconfig(session)
+  const {sessionkey} = await login(session)
   console.log(`${today} 得到session ${sessionkey}`)
 
-  const res2 = await checkin({sessionkey})
+  const res2 = await checkin(session, {sessionkey})
   console.log(`${today} 签到成功 ${res2}`)
 }
 

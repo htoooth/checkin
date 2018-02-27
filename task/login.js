@@ -1,5 +1,3 @@
-const request = require('./request')
-
 const data = {
   "method": "login",
   "loginid": "tao.huang",
@@ -16,9 +14,9 @@ const data = {
   "relogin": 1
 }
 
-async function login() {
+async function login(session) {
   return new Promise(function(resolve, reject) {
-    request.post('/client.do', {
+    session.post('/client.do', {
       form: data,
       json: true,
     }, function(err, res, body) {
