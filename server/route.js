@@ -1,9 +1,9 @@
-const route = requrie('express').Router()
-const constroller = require('./controller')
+const route = require('express').Router()
+const controller = require('./controller')
 
-route.get('/', constroller.list)
+route.get('/', controller.list)
 route.post('/', controller.create)
-route.get('/:id', constroller.show)
+route.get('/:id', controller.show)
 route.post('/:id', controller.edit)
 route.delete('/:id', controller.remove)
 

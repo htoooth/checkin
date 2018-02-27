@@ -6,5 +6,5 @@ const PORT = 80
 schedule.start()
 
 webServer.listen(PORT, function() {
-  console.log('server start at', port)
+  console.log('server start at', PORT)
 })
