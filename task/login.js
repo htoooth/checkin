@@ -20,6 +20,7 @@ async function login() {
   return new Promise(function(resolve, reject) {
     request.post('/client.do', {
       form: data,
+      json: true,
     }, function(err, res, body) {
       if (err) {
         reject(err)

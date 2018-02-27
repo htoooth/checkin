@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "name": "checkin",
+            "name": "yoho-private",
             "script": "index.js",
             "instances": "1",
             "merge_logs": true,

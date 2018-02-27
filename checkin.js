@@ -16,6 +16,8 @@ async function main() {
   console.log(`${today} 工作`)
   const res1 = await getconfig()
   const {sessionkey} = await login()
+  console.log(`${today} 得到session ${sessionkey}`)
+
   const res2 = await checkin({sessionkey})
   console.log(`${today} 签到成功 ${res2}`)
 }
