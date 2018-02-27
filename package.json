@@ -2,11 +2,14 @@
   "name": "yoho-checkin",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "checkin": "node checkin.js",
     "checkout": "node checkout.js",
-    "start": "node index.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "static": "",
+    "build": ""
   },
   "keywords": [],
   "author": "",
@@ -19,5 +22,8 @@
     "nedb": "^1.8.0",
     "node-schedule": "^1.3.0",
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.15.1"
   }
 }
