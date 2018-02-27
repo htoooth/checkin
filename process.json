@@ -1,0 +1,12 @@
+{
+    "apps": [
+        {
+            "name": "checkin",
+            "script": "index.js",
+            "instances": "1",
+            "merge_logs": true,
+            "log_date_format": "YYYY-MM-DD HH:mm Z",
+            "out_file": "./out.log"
+        }
+    ]
+}

@@ -16,6 +16,8 @@ function main() {
   schedule.scheduleJob(ruleOut, function(){
     checkout()
   });
+
+  console.log('checkin start')
 }
 
 main()
