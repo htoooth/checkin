@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "checkin": "node checkin.js",
-    "checkout": "node checkout.js"
+    "checkout": "node checkout.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
