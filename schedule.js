@@ -32,7 +32,9 @@ function main() {
     sleep(getRandomInt(TEN_MINUTES)).then(checkout)
   });
 
-  console.log('checkin start')
+  console.log('schedule start')
 }
 
-main()
+module.exports = {
+  start: main
+}
