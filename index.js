@@ -18,7 +18,8 @@ function getRandomInt(max) {
 
 function main() {
   const ruleIn = new schedule.RecurrenceRule()
-  ruleIn.hour = 9
+  ruleIn.hour = 8
+  ruleIn.minute = 55
 
   schedule.scheduleJob(ruleIn, function(){
     sleep(getRandomInt(TEN_MINUTES)).then(checkin)
