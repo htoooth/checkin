@@ -15,8 +15,9 @@ class UserModel extends Model {
   }
 
   async list() {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       this.db.find({}, function (err, doc) {
+        console.log(err, doc)
         if (err) {
           return reject(err)
         }
@@ -27,7 +28,7 @@ class UserModel extends Model {
   }
 
   async findById(id) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       this.db.findOne({
         _id: id
       }, function (err, doc) {
@@ -41,7 +42,7 @@ class UserModel extends Model {
   }
 
   async insert(doc) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       this.db.insert(doc, function (err, newDoc) {
         if (err) {
           return reject(err)
@@ -53,7 +54,7 @@ class UserModel extends Model {
   }
 
   async update(id, doc) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       this.db.update({
         _id: id
       }, doc, {}, function (err, numAffected) {
@@ -67,10 +68,12 @@ class UserModel extends Model {
   }
 
   async remove(id) {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       this.db.remove({
         _id: id
-      }, { returnUpdatedDocs: true}, function (err, numAffected, affectedDocuments) {
+      }, {
+        returnUpdatedDocs: true
+      }, function (err, numAffected, affectedDocuments) {
         if (err) {
           return reject(err)
         }

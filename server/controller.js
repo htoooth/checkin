@@ -14,7 +14,9 @@ function list(req, res, next) {
 }
 
 function create(req, res, next) {
-  service.create().then(({
+  const params = req.body
+
+  service.create(params).then(({
     error,
     result
   }) => {

@@ -2,12 +2,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const route = require('./server/route')
 const cors = require('cors')
+const timeout = require('connect-timeout')
+const _ = require('lodash')
 
 const app = express()
 
 app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(timeout('5s'))
 
 app.use(function(req, res, next) {
   res.error = function error(data) {
@@ -24,7 +27,7 @@ app.use(function(req, res, next) {
     }, data))
   }
 
-  req.body = req.query ? req.query: req.body
+  req.body = req.method.toUpperCase() === 'GET' ? req.query: req.body
 
   next()
 })
@@ -39,6 +42,8 @@ app.all('*', function(req, res, next) {
 })
 
 app.use(function(err, req, res, next) {
+  console.error(err)
+
   res.json({
     code: 500,
     message: err
