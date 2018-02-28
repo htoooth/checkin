@@ -25,4 +25,4 @@ async function main() {
   console.log(`${today} 签到成功 ${res2}`)
 }
 
-main().catch(err => console.log(err))
+module.exports = main

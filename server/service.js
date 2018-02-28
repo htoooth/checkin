@@ -1,35 +1,49 @@
-function list() {
+const UserModel = require('./user-model')
+
+const userModel = new UserModel()
+
+async function list() {
+  const users = await userModel.list()
+
   return {
     error: null,
-    result: {}
+    result: users
   }
 }
 
-function create(args) {
+async function create(args) {
+  const user = await userModel.insert(args)
+
   return {
     error: null,
-    result: {}
+    result: user
   }
 }
 
-function show(id) {
+async function show(id) {
+  const user = await userModel.findById(id)
+
   return {
     error: null,
-    result: {}
+    result: user
   }
 }
 
-function edit(args) {
+async function edit(id, args) {
+  const updatedUser = await userModel.update(id, args)
+
   return {
     error: null,
-    result: {}
+    result: updatedUser
   }
 }
 
-function remove(id) {
+async function remove(id) {
+  const removedNum = await userModel.remove(id)
+
   return {
     error: null,
-    result: {}
+    result: removedNum
   }
 }
 

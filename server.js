@@ -25,6 +25,8 @@ app.use(function(req, res, next) {
   }
 
   req.body = req.query ? req.query: req.body
+
+  next()
 })
 
 app.use('/api/v1/yoho', cors(), route)
