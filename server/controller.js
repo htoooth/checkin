@@ -1,4 +1,5 @@
 const service = require('./service')
+const _ = require('lodash')
 
 function list(req, res, next) {
   service.list().then(({
@@ -16,6 +17,10 @@ function list(req, res, next) {
 function create(req, res, next) {
   const params = req.body
 
+  if (!params || _.isEmpty(params)) {
+    return res.error()
+  }
+
   service.create(params).then(({
     error,
     result
@@ -29,7 +34,13 @@ function create(req, res, next) {
 }
 
 function show(req, res, next) {
-  service.show().then(({
+  const id = req.params.id
+
+  if (!id) {
+    return res.error()
+  }
+
+  service.show(id).then(({
     error,
     result
   }) => {
@@ -42,7 +53,14 @@ function show(req, res, next) {
 }
 
 function edit(req, res, next) {
-  service.edit().then(({
+  const id = req.params.id
+  const params = req.body
+
+  if (!id || !params || _.isEmpty(params)) {
+    return res.error()
+  }
+
+  service.edit(id, params).then(({
     error,
     result
   }) => {
@@ -55,7 +73,13 @@ function edit(req, res, next) {
 }
 
 function remove(req, res, next) {
-  service.remove().then(({
+  const id = req.params.id
+
+  if (!id) {
+    return res.error()
+  }
+
+  service.remove(id).then(({
     error,
     result
   }) => {

@@ -7,4 +7,4 @@ dist
 dist/*
 src/config/*.tmp
 src/config/env.js
-npm-debug.los
+npm-debug.log

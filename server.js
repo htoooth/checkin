@@ -9,39 +9,42 @@ const app = express()
 
 app.use(express.static('public'))
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(timeout('5s'))
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.error = function error(data) {
-    res.json(Object.assign({
+    res.json({
       code: 400,
-      message: 'params wrong'
-    }, data))
+      message: data || 'params wrong'
+    })
   }
 
-  res.success = function(data) {
-    res.json(Object.assign({
+  res.success = function (data) {
+    res.json({
       code: 200,
-      message: 'successful'
-    }, data))
+      message: 'success',
+      data: data
+    })
   }
 
-  req.body = req.method.toUpperCase() === 'GET' ? req.query: req.body
+  req.body = req.method.toUpperCase() === 'GET' ? req.query : req.body
 
   next()
 })
 
 app.use('/api/v1/yoho', cors(), route)
 
-app.all('*', function(req, res, next) {
+app.all('*', function (req, res, next) {
   res.json({
     code: 500,
     message: 'server wrong'
   })
 })
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   console.error(err)
 
   res.json({

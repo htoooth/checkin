@@ -17,7 +17,6 @@ class UserModel extends Model {
   async list() {
     return new Promise((resolve, reject) => {
       this.db.find({}, function (err, doc) {
-        console.log(err, doc)
         if (err) {
           return reject(err)
         }
@@ -48,12 +47,13 @@ class UserModel extends Model {
           return reject(err)
         }
 
-        reslove(newDoc)
+        resolve(newDoc)
       })
     })
   }
 
   async update(id, doc) {
+    console.log(id, doc)
     return new Promise((resolve, reject) => {
       this.db.update({
         _id: id
