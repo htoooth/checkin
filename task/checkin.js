@@ -9,7 +9,7 @@ const data = {
 
 async function checkin(session, sessionkey) {
   return new Promise(function(resolve, reject) {
-    session.get('/client.do', {qs: Object.assign(data, sessionkey)}, function(err, res, body) {
+    session.get('/client.do', {qs: Object.assign(data, sessionkey), json: true}, function(err, res, body) {
       if (err) {
         reject(err)
         return

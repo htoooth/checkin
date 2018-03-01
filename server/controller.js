@@ -91,10 +91,40 @@ function remove(req, res, next) {
   }).catch(next)
 }
 
+function checkin(req, res, next) {
+  const name = req.params.name
+
+  if (!name) {
+    return res.error()
+  }
+
+  service.checkin(name).then(({error, result}) => {
+    if (error) {
+      return res.error(error)
+    }
+
+    res.success(result)
+  })
+}
+
+function checkout(req, res, next) {
+  const name = req.params.name
+
+  service.checkout(name).then(({error, result}) => {
+    if (error) {
+      return res.error(error)
+    }
+
+    res.success(result)
+  })
+}
+
 module.exports = {
   list,
   create,
   show,
   edit,
-  remove
+  remove,
+  checkin,
+  checkout
 }

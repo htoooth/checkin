@@ -1,6 +1,22 @@
 const UserModel = require('./user-model')
+const checkinService = require('./checkin-service')
+const checkoutService = require('./checkout-service')
 
 const userModel = new UserModel()
+
+function sleep(ms) {
+  return new Promise(function(resolve) {
+    setTimeout(() => {
+      resolve()
+    }, ms)
+  })
+}
+
+const TEN_MINUTES = 10 * 60 * 1000
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
 async function list() {
   const users = await userModel.list()
@@ -47,10 +63,52 @@ async function remove(id) {
   }
 }
 
+async function checkin(name) {
+  const user = await userModel.findByName(name)
+  const result = await checkinService(user)
+
+  return {
+    error: null,
+    result
+  }
+}
+
+async function checkout(name) {
+  const user = await userModel.findByName(name)
+  const result = await checkoutService(user)
+
+  return {
+    error: null,
+    result
+  }
+}
+
+async function checkoutAll() {
+  const users = await userModel.findByCheckin()
+
+  for (let u of users) {
+    await sleep(getRandomInt(TEN_MINUTES))
+    await checkinService(u)
+  }
+}
+
+async function checkinAll() {
+  const users = await userModel.findByCheckout()
+
+  for (let u of users) {
+    await sleep(getRandomInt(TEN_MINUTES))
+    await checkoutService(u)
+  }
+}
+
 module.exports = {
   list,
   create,
   show,
   edit,
-  remove
+  remove,
+  checkin,
+  checkout,
+  checkinAll,
+  checkoutAll
 }

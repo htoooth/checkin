@@ -1,8 +1,5 @@
 const data = {
   "method": "login",
-  "loginid": "tao.huang",
-  "password": "huangtao3.1415926",
-  "udid": "868233033762392",
   "isneedmoulds": 1,
   "client": 1,
   "clientver": "6.5.38",
@@ -14,10 +11,10 @@ const data = {
   "relogin": 1
 }
 
-async function login(session) {
+async function login(session, params) {
   return new Promise(function(resolve, reject) {
     session.post('/client.do', {
-      form: data,
+      form: Object.assign({}, data, params),
       json: true,
     }, function(err, res, body) {
       if (err) {
