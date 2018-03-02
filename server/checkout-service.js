@@ -3,6 +3,7 @@ const login = require('../task/login')
 const checkout = require('../task/checkout')
 const holiday = require('../task/holiday')
 const request = require('../task/request')
+const logger = require('./log-model')
 
 const moment = require('moment')
 
@@ -22,6 +23,7 @@ async function checkoutMain(user) {
   console.log(`${today} 得到session ${sessionkey}`)
 
   if (!sessionkey) {
+    logger.log({name: user.loginid, message: '用户名，密码或设备id 错误，请改正', createdAt: moment().format('YYYY-MM-DD HH:mm:ss')})
     return '用户名，密码或设备id 错误，请改正'
   }
 
@@ -29,6 +31,8 @@ async function checkoutMain(user) {
 
   res2.result = '签出成功'
   console.log(`${today} 签出成功 ${JSON.stringify(res2)}`)
+
+  logger.log({name: user.loginid, message: `签出成功 ${JSON.stringify(res2)}`, createdAt: moment().format('YYYY-MM-DD HH:mm:ss')})
   return res2
 }
 

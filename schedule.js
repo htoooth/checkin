@@ -4,7 +4,7 @@ const service = require('./server/service')
 function scheduleMain() {
   const ruleIn = new schedule.RecurrenceRule()
   ruleIn.hour = 8
-  ruleIn.minute = 55
+  ruleIn.minute = 40
 
   schedule.scheduleJob(ruleIn, function(){
     service.checkinAll()
