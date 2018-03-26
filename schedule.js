@@ -18,7 +18,7 @@ function scheduleMain() {
   // ruleOUt.minute = 0
 
   ruleOut.hour = 17
-  ruleOUt.minute = 0
+  ruleOut.minute = 0
   schedule.scheduleJob(ruleOut, function(){
     service.checkoutAll()
   });
