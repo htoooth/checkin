@@ -15,7 +15,7 @@ function scheduleMain() {
 
   const ruleOut = new schedule.RecurrenceRule()
   ruleOut.hour = 18
-  ruleOUt.minute = 0
+  ruleOut.minute = 0
 
   // ruleOut.hour = 17
   // ruleOut.minute = 0
