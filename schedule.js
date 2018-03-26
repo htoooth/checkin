@@ -12,10 +12,14 @@ function scheduleMain() {
 
   const ruleOut = new schedule.RecurrenceRule()
   ruleOut.hour = 18
+  ruleOUt.minute = 0
 
   schedule.scheduleJob(ruleOut, function(){
     service.checkoutAll()
   });
+
+  // service.checkinAll()
+  // service.checkoutAll()
 
   console.log('schedule start')
 }
