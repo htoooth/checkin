@@ -61,6 +61,7 @@ class UserModel extends Model {
           loginid: doc.name,
           password: doc.password,
           udid: doc.udid,
+          clienttype: doc.device
         })
       })
     })
@@ -80,6 +81,7 @@ class UserModel extends Model {
             loginid: u.name,
             password: u.password,
             udid: u.udid,
+            clienttype: u.device
           }
         })
 
@@ -102,6 +104,7 @@ class UserModel extends Model {
             loginid: u.name,
             password: u.password,
             udid: u.udid,
+            clienttype: u.device
           }
         })
 

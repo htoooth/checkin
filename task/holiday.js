@@ -4,14 +4,31 @@ const END_POINT = 'http://holiday-api.leanapp.cn/api/v1/work'
 
 async function getWorkday(date) {
   return new Promise(function(resolve, reject) {
-    request.get(END_POINT, {qs: {date}, json:true}, function(err, res, body) {
-      if (err) {
-        reject(err)
-        return
-      }
+    // request.get(END_POINT, {qs: {date}, json:true}, function(err, res, body) {
+    //   if (err) {
+    //     reject(err)
+    //     return
+    //   }
 
-      resolve(body)
-    })
+    //   resolve(body)
+    // })
+
+    const now = new Date();
+    const n = now.getDay();
+
+    if ([0, 1].includes(n)) {
+      return resolve({
+        data: {
+          shouldWork: 'N'
+        }
+      });
+    }
+
+    return resolve({
+      data: {
+        shouldWork: 'Y'
+      }
+    });
   })
 }
 

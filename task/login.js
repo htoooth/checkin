@@ -1,20 +1,22 @@
+
+const _ = require('lodash');
+
 const data = {
   "method": "login",
-  "isneedmoulds": 1,
-  "client": 1,
-  "clientver": "6.5.38",
-  "clientos": "NMF26X",
-  "clientosver": "7.1.1",
+  // "isneedmoulds": 1,
+  // "client": 1,
+  // "clientver": "6.5.38",
+  // "clientos": "NMF26X",
+  // "clientosver": "7.1.1",
+  // "clienttype": "iPhone",
   "clienttype": "android",
-  "language": "en",
-  "country": "US",
-  "relogin": 1
+  // "relogin": 1
 }
 
 async function login(session, params) {
   return new Promise(function(resolve, reject) {
     session.post('/client.do', {
-      form: Object.assign({}, data, params),
+      form: _.merge({}, data, params),
       json: true,
     }, function(err, res, body) {
       if (err) {
