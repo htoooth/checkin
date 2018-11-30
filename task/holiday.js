@@ -16,6 +16,7 @@ async function getWorkday(date) {
     const now = new Date();
     const n = now.getDay();
 
+    // 星期日，量期六
     if ([0, 6].includes(n)) {
       return resolve({
         data: {
