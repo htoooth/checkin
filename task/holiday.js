@@ -16,7 +16,7 @@ async function getWorkday(date) {
     const now = new Date();
     const n = now.getDay();
 
-    if ([0, 1].includes(n)) {
+    if ([0, 6].includes(n)) {
       return resolve({
         data: {
           shouldWork: 'N'
