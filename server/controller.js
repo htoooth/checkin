@@ -119,6 +119,18 @@ function checkout(req, res, next) {
   })
 }
 
+function checkstatus(req, res, next) {
+  const name = req.params.name
+
+  service.checkstatus(name).then(({error, result}) => {
+    if (error) {
+      return res.error(error)
+    }
+
+    res.success(result)
+  })
+}
+
 module.exports = {
   list,
   create,
@@ -126,5 +138,6 @@ module.exports = {
   edit,
   remove,
   checkin,
-  checkout
+  checkout,
+  checkstatus
 }

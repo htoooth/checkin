@@ -6,3 +6,4 @@ node_modules/
 src/config/*.tmp
 src/config/env.js
 npm-debug.log
+db/

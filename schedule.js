@@ -2,6 +2,7 @@ const schedule = require('node-schedule')
 const service = require('./server/service')
 
 function scheduleMain() {
+  // 签入
   const ruleIn = new schedule.RecurrenceRule()
   ruleIn.hour = 8
   ruleIn.minute = 30
@@ -13,6 +14,7 @@ function scheduleMain() {
     service.checkinAll()
   });
 
+  // 签出
   const ruleOut = new schedule.RecurrenceRule()
   ruleOut.hour = 18
   ruleOut.minute = 0
@@ -22,6 +24,15 @@ function scheduleMain() {
   schedule.scheduleJob(ruleOut, function(){
     service.checkoutAll()
   });
+
+  // 补签
+  const ruleStatus = new schedule.RecurrenceRule()
+  ruleStatus.hour = 20
+  ruleStatus.minute = 0
+
+  schedule.scheduleJob(ruleStatus, function(){
+    service.checkstatusAll()
+  })
 
   // service.checkinAll()
   // service.checkoutAll()

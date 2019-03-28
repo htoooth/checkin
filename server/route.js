@@ -8,5 +8,6 @@ route.post('/:id', controller.edit)
 route.delete('/:id', controller.remove)
 route.get('/:name/checkin', controller.checkin)
 route.get('/:name/checkout', controller.checkout)
+route.get('/:name/checkstatus', controller.checkstatus)
 
 module.exports = route

@@ -4,8 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "checkin": "node checkin.js",
-    "checkout": "node checkout.js",
     "start": "node app.js",
     "dev": "nodemon app.js",
     "static": "",
@@ -17,6 +15,7 @@
   "dependencies": {
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
     "connect-timeout": "^1.9.0",
     "cors": "^2.8.4",
     "express": "^4.16.2",

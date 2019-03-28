@@ -1,6 +1,7 @@
 const UserModel = require('./user-model')
 const checkinService = require('./checkin-service')
 const checkoutService = require('./checkout-service')
+const checkstatusService = require('./checkstatus-service')
 
 const userModel = new UserModel()
 
@@ -12,7 +13,7 @@ function sleep(ms) {
   })
 }
 
-const TEN_MINUTES = 10 * 60 * 1000
+const TEN_MINUTES = 20 * 60 * 1000
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -101,6 +102,25 @@ async function checkinAll() {
   }
 }
 
+async function checkstatus(name) {
+  const user = await userModel.findByName(name)
+  const result = await checkstatusService(user)
+
+  return {
+    error: null,
+    result
+  }
+}
+
+async function checkstatusAll() {
+  const users = await userModel.findByCheckout()
+
+  for (let u of users) {
+    await sleep(getRandomInt(TEN_MINUTES))
+    await checkstatusService(u)
+  }
+}
+
 module.exports = {
   list,
   create,
@@ -109,6 +129,8 @@ module.exports = {
   remove,
   checkin,
   checkout,
+  checkstatus,
   checkinAll,
-  checkoutAll
+  checkoutAll,
+  checkstatusAll
 }
